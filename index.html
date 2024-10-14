@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Bookstore</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Shared Navigation Bar -->
+    <nav>
+      <div class="logo">Book Store</div>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." class="search-bar" />
+        <button class="search-button">
+          <i class="fa-solid fa-search"></i>
+        </button>
+      </div>
+      <ul class="links-nav">
+        <li class="nav-list">
+          <a class="nav_links" href="#home" id="nav-home">Home</a>
+        </li>
+        <li class="nav-list">
+          <a class="nav_links" href="#wishlist" id="nav-about">Wishlist</a>
+        </li>
+        <li class="nav-list">
+          <a class="nav_links" href="#contact" id="nav-contact">Contact</a>
+        </li>
+      </ul>
+      <div class="toggle_btn_div">
+        <button class="search-button src_btn2">
+          <i class="fa-solid fa-search"></i>
+        </button>
+        <div class="toggle_btn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+    <div class="dropdown_menu">
+      <li class="nav-list">
+        <a class="nav_links" href="#home" id="nav-home">Home</a>
+      </li>
+      <li class="nav-list">
+        <a class="nav_links" href="#wishlist" id="nav-about">Wishlist</a>
+      </li>
+      <li class="nav-list">
+        <a class="nav_links" href="#contact" id="nav-contact">Contact</a>
+      </li>
+    </div>
+    <div class="new_search">
+      <input type="text" placeholder="Search..." class="search-bar bar2" />
+      <button class="search-button">
+        <i class="fa-solid fa-search"></i>
+      </button>
+    </div>
+
+    <!-- Content Sections (Pages) -->
+
+    <div id="home" class="page active homePage">
+      <select class="book_dropdown_menu" name="Genre">
+        <option value="" hidden>Genre</option>
+        <option value="">All Books</option>
+        <option value="Science-fiction">Science fiction</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Horror">Horror</option>
+        <option value="Poetry">Poetry</option>
+        <option value="Literature">Literature</option>
+        <option value="History">History</option>
+        <option value="Children">Children</option>
+        <option value="Psychology">Psychology</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Politics">Politics</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Detective">Detective</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Religion">Religion</option>
+        <option value="Love">Romances</option>
+        <option value="Revenge">Revenge</option>
+        <option value="Sociology">Sociology</option>
+        <option value="Gothic">Gothic</option>
+        <option value="Movie Books">Movie Books</option>
+        <option value="Opera">Opera</option>
+        <option value="Warfare">Warfare</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Science">Science</option>
+      </select>
+      <div class="book_list_homepage">
+        <div>Books</div>
+        <div>Pagination</div>
+      </div>
+    </div>
+
+    <div id="wishlist" class="page">
+      <h1>Wishlist</h1>
+      <p>This is the wishlist page content.</p>
+    </div>
+
+    <div id="contact" class="page">
+      <h1>Contact Us</h1>
+      <p>This is the Contact page content.</p>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
