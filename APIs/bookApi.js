@@ -42,3 +42,16 @@ export async function fetchGenreBook(search, signal) {
     console.error("There was a problem with the fetch operation:", error);
   }
 }
+
+export async function getPages(search) {
+  try {
+    const response = await fetch(search);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+  }
+}

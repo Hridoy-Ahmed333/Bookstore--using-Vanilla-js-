@@ -13,7 +13,7 @@ const toggleSearchButton = document.querySelector(".src_btn2");
 const dropdownBookList = document.querySelector(".book_dropdown_menu");
 const allBooksComp = document.querySelector(".book_list_homepage");
 
-function showPage(pageId, search, status) {
+function showPage(pageId, search, status, type, query) {
   const pages = document.querySelectorAll(".page");
   pages.forEach((page) => page.classList.remove("active"));
 
@@ -22,14 +22,14 @@ function showPage(pageId, search, status) {
     activePage.classList.add("active");
   }
 
-  loadPageScript(pageId, search, status);
+  loadPageScript(pageId, search, status, type, query);
 }
 
-function loadPageScript(pageId, search, status) {
+function loadPageScript(pageId, search, status, type, query) {
   switch (pageId) {
     case "home":
       import("./Pages/home.js")
-        .then((module) => module.homePage(search, status))
+        .then((module) => module.homePage(search, status, type, query))
         .catch((error) =>
           console.error("Failed to load home page script:", error)
         );
@@ -80,7 +80,7 @@ export function initApp() {
       event.preventDefault();
       const pageId = link.getAttribute("href").substring(1);
       window.location.hash = pageId;
-      showPage(pageId, search);
+      showPage(pageId, search, false, "all");
     });
   });
   //--------------------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ export function initApp() {
       fetchGenreBook(values, { signal: controller.signal })
         .then((response) => {
           //console.log("Books fetched successfully:", response);
-          showPage("home", response, true);
+          showPage("home", response, true, "topic", values);
         })
         .catch((error) => {
           console.error("Error fetching books:", error);
@@ -106,7 +106,7 @@ export function initApp() {
       fetchBook()
         .then((response) => {
           //console.log("Books fetched successfully:", response);
-          showPage("home", response, true);
+          showPage("home", response, true, "all");
         })
         .catch((error) => {
           console.error("Error fetching books:", error);
@@ -128,14 +128,14 @@ export function initApp() {
   searchButton.onclick = function () {
     fetchSearchedBookWithCallback(search, (result) => {
       searchedBooks = result;
-      showPage("home", searchedBooks, true);
+      showPage("home", searchedBooks, true, "search", search);
     });
   };
 
   newSearchButton.onclick = function () {
     fetchSearchedBookWithCallback(search, (result) => {
       searchedBooks = result;
-      showPage("home", searchedBooks, true);
+      showPage("home", searchedBooks, true, "search", search);
     });
   };
   //Search Functionality ----------------------------------------------------------------------------------------
