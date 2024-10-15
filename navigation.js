@@ -12,6 +12,8 @@ const page = document.querySelector(".page");
 const toggleSearchButton = document.querySelector(".src_btn2");
 const dropdownBookList = document.querySelector(".book_dropdown_menu");
 const allBooksComp = document.querySelector(".book_list_homepage");
+const overlay = document.querySelector(".glass-overlay");
+const allBookListBody = document.querySelector(".all-book-list");
 
 function showPage(pageId, search, status, type, query) {
   const pages = document.querySelectorAll(".page");
@@ -29,7 +31,7 @@ function loadPageScript(pageId, search, status, type, query) {
   switch (pageId) {
     case "home":
       import("./Pages/home.js")
-        .then((module) => module.homePage(search, status, type, query))
+        .then((module) => module.homePage(search, status, type, query, pageId))
         .catch((error) =>
           console.error("Failed to load home page script:", error)
         );
@@ -55,7 +57,7 @@ function loadPageScript(pageId, search, status, type, query) {
 
 function handleNavigation() {
   const currentHash = window.location.hash.substring(1) || "home";
-  showPage(currentHash);
+  showPage(currentHash, false, false, "all");
 }
 
 let controller = null;
@@ -65,7 +67,10 @@ function fetchSearchedBookWithCallback(search, callback) {
     controller.abort();
   }
   controller = new AbortController();
-
+  while (allBookListBody.firstChild) {
+    allBookListBody.removeChild(allBookListBody.firstChild);
+  }
+  overlay.classList.remove("close-overlay");
   fetchSearchBook(search, { signal: controller.signal })
     .then(callback)
     .catch((error) => {
@@ -94,8 +99,13 @@ export function initApp() {
     }
     controller = new AbortController();
     if (values) {
+      while (allBookListBody.firstChild) {
+        allBookListBody.removeChild(allBookListBody.firstChild);
+      }
+      overlay.classList.remove("close-overlay");
       fetchGenreBook(values, { signal: controller.signal })
         .then((response) => {
+          overlay.classList.add("close-overlay");
           //console.log("Books fetched successfully:", response);
           showPage("home", response, true, "topic", values);
         })
@@ -103,9 +113,14 @@ export function initApp() {
           console.error("Error fetching books:", error);
         });
     } else {
+      while (allBookListBody.firstChild) {
+        allBookListBody.removeChild(allBookListBody.firstChild);
+      }
+      overlay.classList.remove("close-overlay");
       fetchBook()
         .then((response) => {
-          //console.log("Books fetched successfully:", response);
+          overlay.classList.add("close-overlay");
+
           showPage("home", response, true, "all");
         })
         .catch((error) => {
@@ -128,14 +143,18 @@ export function initApp() {
   searchButton.onclick = function () {
     fetchSearchedBookWithCallback(search, (result) => {
       searchedBooks = result;
+      overlay.classList.add("close-overlay");
       showPage("home", searchedBooks, true, "search", search);
+      searchBar.value = "";
     });
   };
 
   newSearchButton.onclick = function () {
     fetchSearchedBookWithCallback(search, (result) => {
       searchedBooks = result;
+      overlay.classList.add("close-overlay");
       showPage("home", searchedBooks, true, "search", search);
+      newSearchBar.value = "";
     });
   };
   //Search Functionality ----------------------------------------------------------------------------------------

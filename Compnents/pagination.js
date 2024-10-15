@@ -2,13 +2,14 @@ import { getPages } from "../APIs/bookApi.js";
 import { allbookList } from "./allbookList.js";
 
 const paginationContainer = document.querySelector(".pagination");
+const overlay = document.querySelector(".glass-overlay");
+const allBookListBody = document.querySelector(".all-book-list");
 let prevType;
 let hasInitialPageLoaded = false;
+let controller = null;
 export function pagination(books, type, query) {
   const totalProducts = books?.count;
   const productsPerPage = 32;
-  //   console.log(totalProducts);
-  //   console.log(books.results.length);
   const totalPages = Math.ceil(totalProducts / productsPerPage);
 
   function getVisiblePages(currentPage) {
@@ -67,15 +68,19 @@ export function pagination(books, type, query) {
     });
   }
   if (!hasInitialPageLoaded) {
+    console.log("page reseting");
     allbookList(books);
     hasInitialPageLoaded = true;
     renderPagination(1);
   } else {
-    if (type !== prevType) {
+    // if (type !== prevType) {
+    if (type) {
       allbookList(books);
-      hasInitialPageLoaded = false;
       renderPagination(1);
-      prevType = type;
+      if (type !== prevType) {
+        hasInitialPageLoaded = false;
+        prevType = type;
+      }
     } else {
       renderPagination(1);
     }
@@ -102,7 +107,17 @@ function nextPage(page, type, query) {
 }
 
 function apiCall(address) {
-  getPages(address).then((response) => {
+  if (controller) {
+    controller.abort();
+  }
+  controller = new AbortController();
+  let signal = { signal: controller.signal };
+  while (allBookListBody.firstChild) {
+    allBookListBody.removeChild(allBookListBody.firstChild);
+  }
+  overlay.classList.remove("close-overlay");
+  getPages(address, signal).then((response) => {
+    overlay.classList.add("close-overlay");
     allbookList(response);
   });
 }
