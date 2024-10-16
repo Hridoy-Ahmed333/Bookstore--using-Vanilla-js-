@@ -33,27 +33,40 @@ export function card(data, parentelement) {
 
   let books = JSON.parse(localStorage.getItem("bookArray"));
   const bookIndex = books?.findIndex((item) => item === data.id);
-  if (bookIndex !== -1) {
-    wishlist.innerHTML = `Wishlist:
-    ${`<svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" width="50" height="30" stroke-width="1.5" stroke="red" class="size-6">
+  if (books) {
+    if (bookIndex !== -1) {
+      wishlist.innerHTML = `Wishlist:
+      ${`<svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" width="50" height="30" stroke-width="1.5" stroke="red" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+      </svg>`}
+    `;
+      wishlist2.innerHTML = `Wishlist:${" "}${`<svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="2.5 4.5 19 16" width="20" height="20" stroke-width="1.5" stroke="red" class="size-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
     </svg>`}
   `;
-    wishlist2.innerHTML = `Wishlist:${" "}${`<svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="2.5 4.5 19 16" width="20" height="20" stroke-width="1.5" stroke="red" class="size-6">
+    } else {
+      wishlist.innerHTML = `Wishlist:
+  ${`<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="50" height="30" stroke-width="1.5" stroke="red" class="size-6">
     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
   </svg>`}
-`;
+  `;
+      wishlist2.innerHTML = `Wishlist:${" "}${`<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="2.5 4.5 19 16" width="20" height="20" stroke-width="1.5" stroke="red" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+  </svg>`}
+  `;
+    }
   } else {
     wishlist.innerHTML = `Wishlist:
-${`<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="50" height="30" stroke-width="1.5" stroke="red" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-</svg>`}
-`;
+  ${`<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="50" height="30" stroke-width="1.5" stroke="red" class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+  </svg>`}
+  `;
     wishlist2.innerHTML = `Wishlist:${" "}${`<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="2.5 4.5 19 16" width="20" height="20" stroke-width="1.5" stroke="red" class="size-6">
-<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-</svg>`}
-`;
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+  </svg>`}
+  `;
   }
+
   const imageUrl = data.formats["image/jpeg"];
   const title = tilettring(data.title);
   img.src = imageUrl || "../images/book-cover.png";
