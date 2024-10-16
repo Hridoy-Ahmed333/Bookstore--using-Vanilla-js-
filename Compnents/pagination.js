@@ -50,7 +50,7 @@ export function pagination(books, type, query) {
       const li = document.createElement("li");
       li.textContent = page;
 
-      li.onclick = () => {
+      li.onclick = (e) => {
         if (page !== "...") {
           window.scrollTo({
             top: 0,

@@ -14,6 +14,7 @@ const dropdownBookList = document.querySelector(".book_dropdown_menu");
 const allBooksComp = document.querySelector(".book_list_homepage");
 const overlay = document.querySelector(".glass-overlay");
 const allBookListBody = document.querySelector(".all-book-list");
+const searchContainer = document.querySelector(".search-container");
 
 function showPage(pageId, search, status, type, query) {
   const pages = document.querySelectorAll(".page");
@@ -30,6 +31,9 @@ function showPage(pageId, search, status, type, query) {
 function loadPageScript(pageId, search, status, type, query) {
   switch (pageId) {
     case "home":
+      navSearch.classList.remove("remove-nav");
+      searchContainer.classList.remove("remove-nav");
+      toggleSearchButton.classList.remove("remove-nav");
       import("./Pages/home.js")
         .then((module) => module.homePage(search, status, type, query, pageId))
         .catch((error) =>
@@ -37,13 +41,21 @@ function loadPageScript(pageId, search, status, type, query) {
         );
       break;
     case "wishlist":
+      overlay.classList.remove("close-overlay");
+      navSearch.classList.add("remove-nav");
+      searchContainer.classList.add("remove-nav");
+      toggleSearchButton.classList.add("remove-nav");
       import("./Pages/wishlist.js")
-        .then((module) => module.wishlistPage())
+        .then((module) => module.wishlistPage(pageId))
         .catch((error) =>
           console.error("Failed to load about page script:", error)
         );
       break;
     case "contact":
+      overlay.classList.remove("close-overlay");
+      navSearch.classList.add("remove-nav");
+      searchContainer.classList.add("remove-nav");
+      toggleSearchButton.classList.add("remove-nav");
       import("./Pages/contact.js")
         .then((module) => module.contactPage())
         .catch((error) =>

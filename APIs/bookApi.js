@@ -61,3 +61,46 @@ export async function getPages(search, signal) {
     return error.message;
   }
 }
+
+export async function getWishlist(signal) {
+  const stringId = getIdfromLocalStorage();
+  if (!stringId) {
+    return false;
+  }
+  try {
+    const response = await fetch(
+      `https://gutendex.com/books?ids=${stringId}`,
+      signal
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error.message1 !== "signal is aborted without reason") {
+      console.log(error);
+    }
+    return error.message;
+  }
+}
+
+function getIdfromLocalStorage() {
+  let books = JSON.parse(localStorage.getItem("bookArray"));
+  if (!books) {
+    const query = false;
+    return query;
+  } else {
+    if (books.length < 1) {
+      const query = false;
+      return query;
+    } else {
+      const query = convertToCommaSeparated(books);
+      return query;
+    }
+  }
+}
+
+function convertToCommaSeparated(arr) {
+  return arr.length > 0 ? arr.map(String).join(",") : "";
+}
