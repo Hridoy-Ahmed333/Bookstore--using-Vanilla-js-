@@ -112,9 +112,9 @@ function apiCall(address) {
   }
   controller = new AbortController();
   let signal = { signal: controller.signal };
-  while (allBookListBody.firstChild) {
-    allBookListBody.removeChild(allBookListBody.firstChild);
-  }
+  // while (allBookListBody.firstChild) {
+  //   allBookListBody.removeChild(allBookListBody.firstChild);
+  // }
   overlay.classList.remove("close-overlay");
   getPages(address, signal).then((response) => {
     overlay.classList.add("close-overlay");
