@@ -1,10 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Ruda:wght@400..900&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  font-family: Arial, sans-serif;
+  /* font-family: Arial, sans-serif; */
+  font-family: "Ruda", sans-serif;
   min-height: 100vh;
   background: linear-gradient(135deg, #4a90e2, #9013fe);
 }

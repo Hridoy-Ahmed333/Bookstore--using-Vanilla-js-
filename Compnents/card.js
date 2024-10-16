@@ -32,7 +32,7 @@ export function card(data, parentelement) {
   }
 
   let books = JSON.parse(localStorage.getItem("bookArray"));
-  const bookIndex = books.findIndex((item) => item === data.id);
+  const bookIndex = books?.findIndex((item) => item === data.id);
   if (bookIndex !== -1) {
     wishlist.innerHTML = `Wishlist:
     ${`<svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" width="50" height="30" stroke-width="1.5" stroke="red" class="size-6">

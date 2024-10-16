@@ -57,6 +57,7 @@ function loadPageScript(pageId, search, status, type, query) {
 
 function handleNavigation() {
   const currentHash = window.location.hash.substring(1) || "home";
+  console.log(currentHash);
   showPage(currentHash, false, false, "all");
 }
 
