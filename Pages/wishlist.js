@@ -34,7 +34,7 @@ export function wishlistPage(pageId) {
         heading.textContent = "You dont have any book in the wishlist";
         return;
       }
-
+      heading.textContent = "Your Wishlist Books";
       const books = response?.results;
       const totalBooks = response?.results?.length;
       let numColumns = Math.ceil(totalBooks / 4);
