@@ -83,6 +83,28 @@ export function card(data, parentelement) {
   link2.textContent = `Details`;
   bookid2.textContent = `Id: ${data.id}`;
 
+  // Adding data-id to the card div
+  card.setAttribute("data-id", data.id);
+  link.setAttribute("data-id", data.id);
+  imgBx.setAttribute("data-id", data.id);
+  img.setAttribute("data-id", data.id);
+  nameDiv.setAttribute("data-id", data.id);
+  cardContent.setAttribute("data-id", data.id);
+  author.setAttribute("data-id", data.id);
+  bookid.setAttribute("data-id", data.id);
+  buttonBlock.setAttribute("data-id", data.id);
+
+  // Similarly for card2
+  card2.setAttribute("data-id", data.id);
+  link2.setAttribute("data-id", data.id);
+  imgBx2.setAttribute("data-id", data.id);
+  img2.setAttribute("data-id", data.id);
+  nameDiv2.setAttribute("data-id", data.id);
+  info.setAttribute("data-id", data.id);
+  author2.setAttribute("data-id", data.id);
+  bookid2.setAttribute("data-id", data.id);
+  buttonBlock2.setAttribute("data-id", data.id);
+
   //Class adding
   card.classList.add("card");
   imgBx.classList.add("imgBx");
@@ -166,4 +188,8 @@ export function card(data, parentelement) {
     }
     localStorage.setItem("bookArray", JSON.stringify(bookArray));
   }
+  card.addEventListener("click", function (event) {
+    const bookId = event.target.getAttribute("data-id");
+    window.location.hash = `details/${bookId}`;
+  });
 }

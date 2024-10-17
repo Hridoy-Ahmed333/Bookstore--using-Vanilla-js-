@@ -41,6 +41,8 @@ nav {
   list-style-type: none;
   display: flex;
   gap: 2rem;
+  position: relative;
+  z-index: 1;
 }
 .nav-list {
   display: inline;
@@ -61,6 +63,13 @@ nav {
 .nav_links_drop:hover {
   color: orange;
 }
+.active-nav-link {
+  position: relative;
+  color: red;
+  font-weight: bold;
+  z-index: 100;
+}
+
 .logo {
   font-size: 2rem;
   font-weight: bold;
@@ -112,8 +121,8 @@ nav {
 }
 .dropdown_menu {
   display: none;
-  position: absolute; /* Changed to absolute */
-  z-index: 10; /* Ensure a higher value for visibility if needed */
+  position: absolute;
+  z-index: 10;
   right: 2rem;
   top: 60px;
   width: 300px;
@@ -455,7 +464,8 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+
+  height: 100%;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 10px;

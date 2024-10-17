@@ -84,6 +84,15 @@ export async function getWishlist(signal) {
     return error.message;
   }
 }
+export async function getBook(id) {
+  try {
+    const response = await fetch(`https://gutendex.com/books?ids=${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return error.message;
+  }
+}
 
 function getIdfromLocalStorage() {
   let books = JSON.parse(localStorage.getItem("bookArray"));
