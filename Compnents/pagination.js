@@ -4,6 +4,7 @@ import { allbookList } from "./allbookList.js";
 const paginationContainer = document.querySelector(".pagination");
 const overlay = document.querySelector(".glass-overlay");
 const allBookListBody = document.querySelector(".all-book-list");
+const allBookList = document.querySelector(".all_books");
 let prevType;
 let hasInitialPageLoaded = false;
 let controller = null;
@@ -42,6 +43,8 @@ export function pagination(books, type, query) {
   }
 
   function renderPagination(currentPage) {
+    const pageHearder = document.querySelector(".all-book-list-header");
+    pageHearder.textContent = `Books page: ${currentPage}`;
     paginationContainer.innerHTML = "";
 
     const visiblePages = getVisiblePages(currentPage);
@@ -56,7 +59,12 @@ export function pagination(books, type, query) {
             top: 0,
             behavior: "smooth",
           });
-          nextPage(page, type, query); // Fetch new data for the clicked page
+
+          allBookList.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          nextPage(page, type, query);
           renderPagination(page);
         }
       };

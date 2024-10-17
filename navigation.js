@@ -15,6 +15,7 @@ const allBooksComp = document.querySelector(".book_list_homepage");
 const overlay = document.querySelector(".glass-overlay");
 const allBookListBody = document.querySelector(".all-book-list");
 const searchContainer = document.querySelector(".search-container");
+const allBookList = document.querySelector(".all_books");
 
 function showPage(pageId, search, status, type, query) {
   const pages = document.querySelectorAll(".page");
@@ -107,6 +108,7 @@ export function initApp() {
   selectMenu.addEventListener("change", function () {
     values = selectMenu.value;
     console.log(values);
+
     if (controller) {
       controller.abort();
     }
@@ -116,6 +118,15 @@ export function initApp() {
         allBookListBody.removeChild(allBookListBody.firstChild);
       }
       overlay.classList.remove("close-overlay");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
+      allBookList.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
       fetchGenreBook(values, { signal: controller.signal })
         .then((response) => {
           overlay.classList.add("close-overlay");
@@ -154,6 +165,16 @@ export function initApp() {
   });
 
   searchButton.onclick = function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    allBookList.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
     fetchSearchedBookWithCallback(search, (result) => {
       searchedBooks = result;
       overlay.classList.add("close-overlay");
@@ -163,6 +184,15 @@ export function initApp() {
   };
 
   newSearchButton.onclick = function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    allBookList.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
     fetchSearchedBookWithCallback(search, (result) => {
       searchedBooks = result;
       overlay.classList.add("close-overlay");
