@@ -3,12 +3,24 @@ import { pagination } from "../Compnents/pagination.js";
 
 const overlay = document.querySelector(".glass-overlay");
 const allBookListBody = document.querySelector(".all-book-list");
+const btn = document.querySelector(".get-started");
+const allBookList = document.querySelector(".all_books");
 
 let books = {};
 let controller = null;
 let shouldCall = false;
 export function homePage(search, status, type, query, id) {
-  console.log("Home page is called");
+  btn.onclick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    allBookList.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   if (status) {
     pagination(search, type, query);
