@@ -1,4 +1,7 @@
+import { circle } from "./circle.js";
+
 export function card(data, parentelement) {
+  circle();
   const card = document.createElement("div");
   const imgBx = document.createElement("div");
   const img = document.createElement("img");
@@ -188,8 +191,13 @@ export function card(data, parentelement) {
     }
     localStorage.setItem("bookArray", JSON.stringify(bookArray));
   }
+
   card.addEventListener("click", function (event) {
     const bookId = event.target.getAttribute("data-id");
+    const circles = document.querySelectorAll(".circle");
+    circles.forEach((circle) => {
+      circle.remove();
+    });
     window.location.hash = `details/${bookId}`;
   });
 }

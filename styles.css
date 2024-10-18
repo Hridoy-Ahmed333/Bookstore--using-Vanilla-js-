@@ -1171,6 +1171,9 @@ nav {
   .buttonBlock2 {
     width: 15%;
   }
+  .book_list_homepage {
+    margin-top: 3rem;
+  }
 }
 
 @media (max-width: 400px) {

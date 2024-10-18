@@ -67,6 +67,7 @@ function loadPageScript(pageId, search, status, type, query) {
       navSearch.classList.add("remove-nav");
       searchContainer.classList.add("remove-nav");
       toggleSearchButton.classList.add("remove-nav");
+
       import("./Pages/wishlist.js")
         .then((module) => module.wishlistPage(pageId))
         .catch((error) =>

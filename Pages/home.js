@@ -10,6 +10,10 @@ let books = {};
 let controller = null;
 let shouldCall = false;
 export function homePage(search, status, type, query, id) {
+  const circles = document.querySelectorAll(".circle");
+  circles.forEach((circle) => {
+    circle.remove(); // Removes the circle element from the DOM
+  });
   btn.onclick = () => {
     window.scrollTo({
       top: 0,
