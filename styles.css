@@ -8,7 +8,8 @@ body {
   /* font-family: Arial, sans-serif; */
   font-family: "Ruda", sans-serif;
   min-height: 100vh;
-  /* background: linear-gradient(135deg, #4a90e2, #9013fe); */
+  overflow-x: hidden;
+  overflow-y: auto;
   background: #333;
 }
 
@@ -883,6 +884,9 @@ nav {
   }
 }
 @media (max-width: 700px) {
+  .book_list_homepage {
+    min-height: 100vh;
+  }
   .wishlist-heading {
     font-size: 25px;
   }

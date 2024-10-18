@@ -115,6 +115,7 @@ function fetchSearchedBookWithCallback(search, callback) {
     allBookListBody.removeChild(allBookListBody.firstChild);
   }
   overlay.classList.remove("close-overlay");
+
   fetchSearchBook(search, { signal: controller.signal })
     .then(callback)
     .catch((error) => {
@@ -137,6 +138,10 @@ export function initApp() {
   let values = selectMenu.value;
   selectMenu.addEventListener("change", function () {
     values = selectMenu.value;
+    let allcircles = document.querySelectorAll(".circle");
+    allcircles.forEach((circle) => {
+      circle.remove();
+    });
     console.log(values);
 
     if (controller) {
@@ -195,6 +200,11 @@ export function initApp() {
   });
 
   searchButton.onclick = function () {
+    dropdownBookList.selectedIndex = 0;
+    let circles = document.querySelectorAll(".circle");
+    circles.forEach((circle) => {
+      circle.remove();
+    });
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -205,7 +215,7 @@ export function initApp() {
       block: "start",
     });
 
-    fetchSearchedBookWithCallback(search, (result) => {
+    fetchSearchedBookWithCallback(searchBar.value, (result) => {
       searchedBooks = result;
       overlay.classList.add("close-overlay");
       showPage("home", searchedBooks, true, "search", search);
@@ -214,6 +224,11 @@ export function initApp() {
   };
 
   newSearchButton.onclick = function () {
+    dropdownBookList.selectedIndex = 0;
+    let allcircles = document.querySelectorAll(".circle");
+    allcircles.forEach((circle) => {
+      circle.remove();
+    });
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -223,13 +238,14 @@ export function initApp() {
       behavior: "smooth",
       block: "start",
     });
-    fetchSearchedBookWithCallback(search, (result) => {
+    fetchSearchedBookWithCallback(newSearchBar.value, (result) => {
       searchedBooks = result;
       overlay.classList.add("close-overlay");
       showPage("home", searchedBooks, true, "search", search);
       newSearchBar.value = "";
     });
   };
+
   //Search Functionality ----------------------------------------------------------------------------------------
 
   toggleButton.onclick = function () {
