@@ -1,3 +1,4 @@
+import { showPage } from "../navigation.js";
 import { circle } from "./circle.js";
 
 export function card(data, parentelement) {
@@ -194,6 +195,7 @@ export function card(data, parentelement) {
 
   card.addEventListener("click", function (event) {
     const bookId = event.target.getAttribute("data-id");
+    showPage(`details/${bookId}`);
     const circles = document.querySelectorAll(".circle");
     circles.forEach((circle) => {
       circle.remove();

@@ -18,7 +18,7 @@ const allBookListBody = document.querySelector(".all-book-list");
 const searchContainer = document.querySelector(".search-container");
 const allBookList = document.querySelector(".all_books");
 
-// function showPage(pageId, search, status, type, query) {
+// export function showPage(pageId, search, status, type, query) {
 //   const pages = document.querySelectorAll(".page");
 //   pages.forEach((page) => page.classList.remove("active"));
 
@@ -27,25 +27,41 @@ const allBookList = document.querySelector(".all_books");
 //     activePage.classList.add("active");
 //   }
 
-//   loadPageScript(pageId, search, status, type, query);
+//   if (pageId.startsWith("details/")) {
+//     const id = pageId.split("/")[1];
+//     navSearch.classList.add("remove-nav");
+//     searchContainer.classList.add("remove-nav");
+//     toggleSearchButton.classList.add("remove-nav");
+//     details(id);
+//   } else {
+//     loadPageScript(pageId, search, status, type, query);
+//   }
 // }
 
-function showPage(pageId, search, status, type, query) {
+export function showPage(pageId, search, status, type, query) {
   const pages = document.querySelectorAll(".page");
   pages.forEach((page) => page.classList.remove("active"));
 
-  const activePage = document.getElementById(pageId);
-  if (activePage) {
-    activePage.classList.add("active");
-  }
+  let activePage;
 
   if (pageId.startsWith("details/")) {
+    activePage = document.getElementById("details");
+    if (activePage) {
+      activePage.classList.add("active");
+    }
+
     const id = pageId.split("/")[1];
     navSearch.classList.add("remove-nav");
     searchContainer.classList.add("remove-nav");
     toggleSearchButton.classList.add("remove-nav");
+
     details(id);
   } else {
+    activePage = document.getElementById(pageId);
+    if (activePage) {
+      activePage.classList.add("active");
+    }
+
     loadPageScript(pageId, search, status, type, query);
   }
 }

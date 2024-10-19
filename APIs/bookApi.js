@@ -84,9 +84,12 @@ export async function getWishlist(signal) {
     return error.message;
   }
 }
-export async function getBook(id) {
+export async function getBook(id, signal) {
   try {
-    const response = await fetch(`https://gutendex.com/books?ids=${id}`);
+    const response = await fetch(
+      `https://gutendex.com/books?ids=${id}`,
+      signal
+    );
     const data = await response.json();
     return data;
   } catch (error) {
