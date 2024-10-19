@@ -2,9 +2,13 @@ import { getBook } from "../APIs/bookApi.js";
 import { bookDetailContainer } from "../Compnents/bookDetailContainer.js";
 
 const overlay = document.querySelector(".glass-overlay3");
+const detailOv = document.querySelector(".detail-overlay");
 let controller = null;
 
 export function details(data) {
+  // overlay.classList.remove("close-overlay");
+  console.log(console.log(overlay));
+
   overlay.classList.remove("close-overlay");
 
   if (controller) {
@@ -21,10 +25,10 @@ export function details(data) {
     .then((res) => {
       if (res) {
         bookDetailContainer(res?.results[0]);
+        overlay.classList.add("close-overlay");
       }
     })
     .catch((err) => {
-      overlay.classList.add("close-overlay");
       console.log("Failed to fetch book details:", err);
     });
 }

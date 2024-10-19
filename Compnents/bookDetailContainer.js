@@ -83,5 +83,4 @@ export function bookDetailContainer(data) {
     }
     localStorage.setItem("bookArray", JSON.stringify(bookArray));
   }
-  overlay.classList.add("close-overlay");
 }
